@@ -1,11 +1,16 @@
 'use strict';
 
 const Hapi = require('hapi');
+const Joi = require('joi');
+const Schema = require('./schema/schemaValidation')
 
 const server = Hapi.server({
     port: 3000,
     host: 'localhost'
 });
+
+
+
 
 server.route({
     method: 'GET',
@@ -20,6 +25,13 @@ server.route({
     path: '/{name}', // NAME NOT NUMBER USING JOI
     handler: (request, h) => {
         return 'Hello___ ' + encodeURIComponent(request.params.name) + '!'
+    },
+    options: {
+        validate: {
+            params: {
+                name: Joi.string().regex(/^[a-z][a-z\s]*$/)
+            }
+        }
     }
 })
 
@@ -28,6 +40,14 @@ server.route({
     path: '/{name}/{job}', // JON >= 5 CHAR USING JOI
     handler: (request, h) => {
         return 'Hello___ ' + encodeURIComponent(request.params.name) + ' ' +encodeURIComponent(request.params.job) + '!'
+    },
+    options: {
+        validate: {
+            params: {
+                name: Joi.string().regex(/^[a-z][a-z\s]*$/),
+                job: Joi.string().regex(/^[a-zA-Z0-9]{5,100}$/)
+            }
+        }
     }
 })
 

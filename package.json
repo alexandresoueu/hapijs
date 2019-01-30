@@ -19,6 +19,7 @@
   "homepage": "https://github.com/alexandresoueu/hapijs#readme",
   "dependencies": {
     "hapi": "^18.0.0",
-    "inert": "^5.1.2"
+    "inert": "^5.1.2",
+    "joi": "^13.6.0"
   }
 }
