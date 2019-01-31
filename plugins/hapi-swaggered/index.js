@@ -13,6 +13,5 @@ module.exports = {
             description: 'Swagger',
             version: '1.0',
         },
-        stripPrefix: '/v1',
-    }
+    },
 }
